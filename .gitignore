@@ -1,0 +1,40 @@
+# HandBrake Folder Watcher - Git Ignore File
+# This file tells git which files/folders to ignore
+
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Log files
+logs/
+*.log
+
+# Output directories with encoded videos
+output/*
+done/*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test files (don't share test videos)
+input/*
+!input/.gitkeep
+
+# User-specific configuration (optional - uncomment if you want to keep config private)
+# config.ini

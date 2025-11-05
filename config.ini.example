@@ -1,0 +1,120 @@
+# HandBrake Folder Watcher - Configuration File Example
+#
+# This is an example configuration file showing all available options.
+# Copy this to 'config.ini' and customize the values to your preferences.
+#
+# Lines starting with # are comments and will be ignored.
+
+[Directories]
+# ==================== Directory Configuration ====================
+#
+# All directory paths can be either:
+#   - Relative to the script location (e.g., "input", "my_videos/input")
+#   - Absolute paths (e.g., "/Users/username/Videos/input", "C:\Videos\input")
+#
+# The script will automatically create these directories if they don't exist.
+
+# Input directory: Where to watch for new video files
+# Default: input
+input_dir = input
+
+# Output directory: Where encoded files will be saved
+# Default: output
+output_dir = output
+
+# Done directory: Where original files are moved after successful encoding
+# Default: done
+done_dir = done
+
+# Examples of custom paths:
+# input_dir = /Users/username/Videos/ToEncode
+# input_dir = C:\Users\username\Videos\ToEncode
+# input_dir = ../shared/videos/input
+
+
+[Encoding]
+# ==================== Encoding Configuration ====================
+
+# HandBrake preset to use for encoding
+# Run "HandBrakeCLI --preset-list" to see all available presets
+#
+# Popular presets:
+#   Very Fast presets (fastest encoding):
+#     - Very Fast 480p30
+#     - Very Fast 720p30 (default)
+#     - Very Fast 1080p30
+#
+#   Fast presets (good balance):
+#     - Fast 480p30
+#     - Fast 720p30
+#     - Fast 1080p30
+#
+#   High Quality presets (slower, better quality):
+#     - HQ 720p30 Surround
+#     - HQ 1080p30 Surround
+#
+#   Hardware accelerated (if available):
+#     - H.265 Apple VideoToolbox 1080p
+#     - H.265 NVENC 1080p
+#
+# Default: Very Fast 720p30
+preset = Very Fast 720p30
+
+
+[FileHandling]
+# ==================== File Handling Configuration ====================
+
+# Video file extensions to watch for (comma-separated, include the dot)
+# The script will only process files with these extensions.
+# 
+# Common video formats:
+#   .mp4   - MPEG-4 Part 14
+#   .avi   - Audio Video Interleave
+#   .mkv   - Matroska Video
+#   .mov   - QuickTime Movie
+#   .wmv   - Windows Media Video
+#   .flv   - Flash Video
+#   .webm  - WebM
+#   .m4v   - iTunes Video
+#   .mpg   - MPEG Video
+#   .mpeg  - MPEG Video
+#   .ts    - MPEG Transport Stream
+#   .mts   - AVCHD Video
+#   .m2ts  - Blu-ray BDAV Video
+#
+# Default: .mp4,.avi,.mkv,.mov,.wmv,.flv,.webm,.m4v,.mpg,.mpeg
+video_extensions = .mp4,.avi,.mkv,.mov,.wmv,.flv,.webm,.m4v,.mpg,.mpeg
+
+# Time to wait for file to stabilize before processing (in seconds)
+# The script waits this many seconds for the file size to remain constant
+# before starting encoding. Increase this if large files are being processed
+# before they finish copying.
+#
+# Default: 3
+stabilization_time = 3
+
+# Interval between file size checks during stabilization (in seconds)
+# How often to check if the file size has changed.
+#
+# Default: 1
+stabilization_check_interval = 1
+
+
+[Logging]
+# ==================== Logging Configuration ====================
+
+# Log directory: Where log files will be saved
+# Can be relative or absolute path.
+# Default: logs
+log_dir = logs
+
+# Logging level: Controls how much detail is logged
+# Options (from most to least verbose):
+#   - DEBUG    : Detailed information for diagnosing problems
+#   - INFO     : General informational messages (default)
+#   - WARNING  : Warning messages for non-critical issues
+#   - ERROR    : Error messages for serious problems
+#   - CRITICAL : Critical error messages
+#
+# Default: INFO
+log_level = INFO
