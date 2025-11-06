@@ -31,8 +31,6 @@ handbrake/
 ├── start_watcher_mac.sh     # Launcher script (macOS/Linux)
 ├── start_watcher.bat        # Launcher script (Windows Command Prompt)
 └── start_watcher.ps1        # Launcher script (Windows PowerShell)
-```
-
 └── start_watcher.ps1 # Launcher script (Windows PowerShell)
 
 ````
