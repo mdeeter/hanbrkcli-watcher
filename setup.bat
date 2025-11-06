@@ -57,6 +57,15 @@ if errorlevel 1 (
     exit /b 1
 )
 
+REM Create directories based on config
+echo.
+echo Creating directories...
+if not exist input mkdir input
+if not exist output mkdir output
+if not exist done mkdir done
+if not exist logs mkdir logs
+echo Created: input\, output\, done\, logs\
+
 echo.
 echo ==============================
 echo Setup complete!

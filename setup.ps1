@@ -54,6 +54,17 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
+# Create directories based on config
+Write-Host ""
+Write-Host "Creating directories..." -ForegroundColor Yellow
+$directories = @("input", "output", "done", "logs")
+foreach ($dir in $directories) {
+    if (-not (Test-Path $dir)) {
+        New-Item -ItemType Directory -Path $dir | Out-Null
+    }
+}
+Write-Host "✅ Created: input/, output/, done/, logs/" -ForegroundColor Green
+
 Write-Host ""
 Write-Host "==============================" -ForegroundColor Cyan
 Write-Host "Setup complete!" -ForegroundColor Green

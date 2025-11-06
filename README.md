@@ -66,11 +66,18 @@ setup.bat
 .\setup.ps1
 ```
 
+**Note for PowerShell users:** If you get an execution policy error, run this first:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 This will:
 
 - Create a Python virtual environment
 - Install all dependencies
 - Verify HandBrake CLI installation
+- **Create required directories** (input, output, done, logs)
 - Make scripts executable (macOS/Linux)
 
 ### Manual Setup
@@ -166,6 +173,11 @@ This will:
 3. **Watch real-time progress** in the console:
 
    ```
+   🔧 Checking directories...
+   ✅ Created Input directory: /Users/username/handbrake/input
+   ✅ Output directory: /Users/username/handbrake/output
+   ✅ Done directory: /Users/username/handbrake/done
+
    ============================================================
    🎬 Encoding: my_video.mp4
    ============================================================
@@ -178,7 +190,9 @@ This will:
 
 ## Configuration
 
-The script can be customized using the `config.ini` file. If the file doesn't exist, the script will use default values.
+The script can be customized using the `config.ini` file. If the file doesn't exist, the script will use default values and create directories in the default locations.
+
+**Note:** The script automatically creates the configured directories (input, output, done, logs) if they don't exist, including any parent directories needed for custom paths.
 
 ### Creating Your Configuration File
 
@@ -199,7 +213,7 @@ The script can be customized using the `config.ini` file. If the file doesn't ex
 - `done_dir` - Where original files are moved after encoding (default: `done`)
 - `log_dir` - Where log files are stored (default: `logs`)
 
-All paths can be relative or absolute.
+All paths can be **relative** (to the script location) or **absolute**. The script will automatically create these directories if they don't exist, including any necessary parent directories.
 
 **Encoding:**
 
@@ -273,13 +287,23 @@ which HandBrakeCLI
 HandBrakeCLI --version
 ```
 
-### Permission issues
+### Permission issues (macOS/Linux)
 
-Make sure the script has proper permissions:
+The executable permissions are stored in git and should work after cloning. If needed:
 
 ```bash
-chmod +x handbrake_watcher.py
+chmod +x setup_mac.sh start_watcher_mac.sh handbrake_watcher.py
 ```
+
+### PowerShell execution policy (Windows)
+
+If you get "cannot be loaded because running scripts is disabled" error:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+This is a one-time setting that allows locally-created scripts to run.
 
 ### Encoding failures
 

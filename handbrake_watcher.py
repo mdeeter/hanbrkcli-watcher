@@ -402,14 +402,24 @@ def main():
     logger.info(f"Encoding preset: {HANDBRAKE_PRESET}")
     logger.info(f"Video extensions: {', '.join(sorted(VIDEO_EXTENSIONS))}")
     
-    # Create directories if they don't exist
-    INPUT_DIR.mkdir(exist_ok=True)
-    OUTPUT_DIR.mkdir(exist_ok=True)
-    DONE_DIR.mkdir(exist_ok=True)
+    # Create directories if they don't exist (with parent directories)
+    print("\n🔧 Checking directories...")
+    directories = {
+        'Input': INPUT_DIR,
+        'Output': OUTPUT_DIR,
+        'Done': DONE_DIR
+    }
     
-    logger.info(f"Input directory: {INPUT_DIR.absolute()}")
-    logger.info(f"Output directory: {OUTPUT_DIR.absolute()}")
-    logger.info(f"Done directory: {DONE_DIR.absolute()}")
+    for name, directory in directories.items():
+        if not directory.exists():
+            directory.mkdir(parents=True, exist_ok=True)
+            logger.info(f"Created {name.lower()} directory: {directory.absolute()}")
+            print(f"✅ Created {name} directory: {directory.absolute()}")
+        else:
+            logger.info(f"{name} directory: {directory.absolute()}")
+            print(f"✅ {name} directory: {directory.absolute()}")
+    
+    print()
     
     # Check HandBrake installation
     if not check_handbrake_installation():

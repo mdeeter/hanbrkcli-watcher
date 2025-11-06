@@ -33,15 +33,23 @@ source venv/bin/activate
 echo "Installing Python dependencies in virtual environment..."
 pip install -r requirements.txt
 
+# Create directories based on config
+echo ""
+echo "Creating directories..."
+mkdir -p input output done logs
+echo "✅ Created: input/, output/, done/, logs/"
+
 # Make scripts executable
 chmod +x handbrake_watcher.py
-chmod +x start_watcher.sh
+chmod +x start_watcher_mac.sh
 
 echo ""
+echo "=============================="
 echo "Setup complete!"
+echo "=============================="
 echo ""
 echo "To start the folder watcher, run:"
-echo "  ./start_watcher.sh"
+echo "  ./start_watcher_mac.sh"
 echo ""
 echo "Or manually with:"
 echo "  source venv/bin/activate && python handbrake_watcher.py"
